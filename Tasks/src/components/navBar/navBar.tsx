@@ -19,13 +19,20 @@ export const NavBar = () => {
 
       <Card>
         <Flex gap="6" align="center" p="2">
+
           <Button className="cursor-pointer" size="3" variant="ghost"> Create a Task </Button>
-          <IconButton className="cursor-pointer" size="3" variant="ghost"> <User /> </IconButton>
-          <Button className="cursor-pointer" size="3" variant="ghost" onClick={handleToggleTheme}> 
-            {theme === 'dark' ? 'Light' : 'Dark'}  
+
+          <Link to="Login">
+            <IconButton className="cursor-pointer" size="3" variant="ghost"> <User /> </IconButton>
+          </Link>
+
+          <Button className="cursor-pointer" size="3" variant="ghost" onClick={handleToggleTheme}>
+            {theme === 'dark' ? 'Light' : 'Dark'}
           </Button>
+
         </Flex>
       </Card>
+
     </ Section>
   );
 }
