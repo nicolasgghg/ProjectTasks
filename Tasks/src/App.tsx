@@ -1,7 +1,8 @@
 import { NavBar } from "./components/navBar/navBar";
 
 
-function App() {
+
+export const App = () => {
 
   return (
     <div className="text-center">
@@ -10,4 +11,3 @@ function App() {
     </ div>
 )
 }
-export default App
