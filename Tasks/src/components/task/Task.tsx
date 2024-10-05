@@ -2,6 +2,10 @@ import { Box, Button, Card, Heading, Text, Tooltip } from "@radix-ui/themes";
 import { Check, Edit, Menu, Trash, X } from "lucide-react";
 import { useContext, useState } from "react";
 import { ThemeContext } from "../../shared/context/main";
+import { DialogTask } from "../dialogTask/DialogTask";
+
+
+
 interface IPTask {
     id: number;
     title: string;
@@ -39,17 +43,23 @@ export const Task = ({ task }: { task: IPTask }) => {
                     <div 
                         className={
                             themeContext.theme === "dark" ?
-                            "absolute left-0 -top-1/2 -translate-x-[10%] bg-white shadow-lg rounded-lg p-2 flex items-center justify-between"
-                            : "absolute left-0 -top-1/2 -translate-x-[10%] bg-black shadow-lg rounded-lg p-2 flex items-center justify-between"
+                            "absolute -right-3 -top-1/2 bg-white shadow-lg rounded-lg flex items-center justify-between p-2"
+                            : "absolute -right-3 -top-1/2 bg-black shadow-lg rounded-lg flex items-center justify-between p-2"
                         }    
                     >
-                        <Button className="w-[30%]" variant="ghost" color="blue" onClick={()=>{}}>
-                            <Edit className="mr-2" />
-                        </Button>
-                        <Button className="w-[30%]" variant="ghost" onClick={()=>{}}>
-                            <Check className="mr-2" />
-                        </Button>
-                        <Button className="w-[30%]" variant="ghost" color="red" onClick={()=>{}}>
+                        <DialogTask titleTask="Edit Task" description={task.title}>
+                            <Button className="w-16 mx-1/4" variant="ghost" color="blue">
+                                <Edit className="mr-2" />
+                            </Button>
+                        </DialogTask>
+                        {
+                            !task.completed && (
+                                <Button className="w-16 mx-1/4" variant="ghost" onClick={()=>{}}>
+                                    <Check className="mr-2" />
+                                </Button>    
+                            )
+                        }
+                        <Button className="w-16 mx-1/4" variant="ghost" color="red" onClick={()=>{}}>
                             <Trash className="mr-2" />
                         </Button>
 

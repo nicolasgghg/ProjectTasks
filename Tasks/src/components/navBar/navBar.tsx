@@ -1,9 +1,9 @@
 import { Button, Card, Flex, IconButton, Section } from "@radix-ui/themes";
-import { User } from "lucide-react";
+import { Moon, Sun, User } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ThemeContext } from "../../shared/context/main";
 import { useContext } from "react";
-import { CreateTask } from "../dialogTask/DialogTask";
+import { DialogTask } from "../dialogTask/DialogTask";
 
 
 
@@ -21,9 +21,9 @@ export const NavBar = () => {
       <Card>
         <Flex gap="6" align="center" p="2">
 
-          <CreateTask titleTask="Create A Task">
+          <DialogTask titleTask="Create A Task">
             <Button className="cursor-pointer" size="3" variant="ghost"> Create a Task </Button>
-          </CreateTask>
+          </DialogTask>
 
 
           <Link to="Login">
@@ -31,7 +31,7 @@ export const NavBar = () => {
           </Link>
 
           <Button className="cursor-pointer" size="3" variant="ghost" onClick={handleToggleTheme}>
-            {theme === 'dark' ? 'Light' : 'Dark'}
+            {theme === 'dark' ? <Sun /> : <Moon />}
           </Button>
 
         </Flex>
