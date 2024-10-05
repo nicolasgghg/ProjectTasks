@@ -29,7 +29,7 @@ export const Login = () => {
         >
             <Link to="/Register">
                 <Button variant="soft">
-                    Logout
+                    Register
                 </Button>
             </Link>
             <Button variant="soft" onClick={() => { }}>Login</Button>

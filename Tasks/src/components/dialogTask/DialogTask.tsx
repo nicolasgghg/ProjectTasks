@@ -34,7 +34,7 @@ export const DialogTask = ({ children, titleTask, description}: IPTask) => {
                         Description Task
                     </Text>
                     <TextArea
-                        placeholder="Title of task"
+                        placeholder="Description of task"
                     />
                 </label>
             </Flex>
