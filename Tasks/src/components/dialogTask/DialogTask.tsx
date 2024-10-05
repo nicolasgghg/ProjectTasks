@@ -1,4 +1,4 @@
-import { Button, Dialog, Flex, Text, TextField } from "@radix-ui/themes"
+import { Button, Dialog, Flex, Text, TextArea, TextField } from "@radix-ui/themes"
 import { ReactNode } from "react"
 
 interface IPTask {
@@ -6,13 +6,6 @@ interface IPTask {
     titleTask: string
     description?: string
 }
-
-const inputs = [
-    { "title": "Title Task", "placeholder": "Title of task" },
-    { "title": "Description", "placeholder": "Description of task" }
-]
-
-
 
 export const DialogTask = ({ children, titleTask, description}: IPTask) => {
     return <Dialog.Root>
@@ -28,18 +21,22 @@ export const DialogTask = ({ children, titleTask, description}: IPTask) => {
             </Dialog.Description>
 
             <Flex direction="column" gap="3">
-                {
-                    inputs.map(e => {
-                        return <label key={e.title}>
-                            <Text as="div" size="2" mb="1" weight="bold">
-                                {e.title}
-                            </Text>
-                            <TextField.Root
-                                placeholder={e.placeholder}
-                            />
-                        </label>
-                    })
-                }
+                <label>
+                    <Text as="div" size="2" mb="1" weight="bold">
+                        Title Task
+                    </Text>
+                    <TextField.Root
+                        placeholder="Title of task"
+                    />
+                </label>
+                <label>
+                    <Text as="div" size="2" mb="1" weight="bold">
+                        Description Task
+                    </Text>
+                    <TextArea
+                        placeholder="Title of task"
+                    />
+                </label>
             </Flex>
 
             <Flex gap="3" mt="4" justify="end">
