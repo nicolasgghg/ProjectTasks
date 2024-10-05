@@ -10,14 +10,14 @@ export const TabsTask = () => {
 
 
   return (
-    <Tabs.Root className="" defaultValue="account">
+    <Tabs.Root className="" defaultValue="ToDo">
       <Tabs.List>
         <Tabs.Trigger value="ToDo" >To Do</Tabs.Trigger>
         <Separator orientation="vertical" size="2" />
         <Tabs.Trigger value="Finished">Finished</Tabs.Trigger>
       </Tabs.List>
 
-      <Tabs.Content className="p-3 grid md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8" value="ToDo">
+      <Tabs.Content className="grid md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3" value="ToDo">
         {
           todoTasks.map(task=>(
             <Task key={task.id} task={task}/>
@@ -25,7 +25,7 @@ export const TabsTask = () => {
         }
       </Tabs.Content>
 
-      <Tabs.Content className="p-3 grid md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8" value="Finished">
+      <Tabs.Content className="grid md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3" value="Finished">
         {
           finishedTasks.map(task=>(
             <Task key={task.id} task={task}/>

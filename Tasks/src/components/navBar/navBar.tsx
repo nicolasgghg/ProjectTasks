@@ -3,6 +3,7 @@ import { User } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ThemeContext } from "../../shared/context/main";
 import { useContext } from "react";
+import { CreateTask } from "../dialogTask/DialogTask";
 
 
 
@@ -20,10 +21,13 @@ export const NavBar = () => {
       <Card>
         <Flex gap="6" align="center" p="2">
 
-          <Button className="cursor-pointer" size="3" variant="ghost"> Create a Task </Button>
+          <CreateTask titleTask="Create A Task">
+            <Button className="cursor-pointer" size="3" variant="ghost"> Create a Task </Button>
+          </CreateTask>
+
 
           <Link to="Login">
-            <IconButton className="cursor-pointer" size="3" variant="ghost"> <User /> </IconButton>
+            <IconButton className="cursor-pointer" size="3" variant="ghost" aria-label="Login"> <User /> </IconButton>
           </Link>
 
           <Button className="cursor-pointer" size="3" variant="ghost" onClick={handleToggleTheme}>
