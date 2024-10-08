@@ -1,9 +1,18 @@
 import { Button } from "@radix-ui/themes"
-import { useEffect } from "react"
+import { useContext, useEffect, useRef } from "react"
 import { IInputes, TemplateLoginRegister } from "../../shared/components/templateLoginRegister/TemplateLoginRegister"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import { UserContext } from "../../shared/context/main"
 
 export const Login = () => {
+
+    const userContext = useContext(UserContext);
+    const navigate = useNavigate();
+
+
+    const emailRef = useRef<HTMLInputElement>(null);
+    const passwordRef = useRef<HTMLInputElement>(null);
+
     useEffect(() => {
         document.title = "Tasks - Login"
     }, [])
@@ -12,14 +21,26 @@ export const Login = () => {
         {
             inputTitle: "Email",
             placeholder: "XXXXXXX@gmail.com",
-            type: "email"
+            type: "email",
+            ref: emailRef
         },
         {
             inputTitle: "Password",
             placeholder: "**********",
-            type: "password"
+            type: "password",
+            ref: passwordRef
         }
     ]
+
+    const handleLogin = () => {
+        const email = emailRef.current?.value
+        const password = passwordRef.current?.value
+
+        if (userContext) {
+            const isLoginSuccessful = userContext.login(email || "", password || "");
+            if (isLoginSuccessful) {navigate("/")}
+        }
+    };
 
 
     return (
@@ -32,7 +53,7 @@ export const Login = () => {
                     Register
                 </Button>
             </Link>
-            <Button variant="soft" onClick={() => { }}>Login</Button>
+            <Button variant="soft" onClick={handleLogin}>Login</Button>
         </TemplateLoginRegister >
     )
 }

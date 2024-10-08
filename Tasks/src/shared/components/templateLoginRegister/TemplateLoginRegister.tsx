@@ -3,10 +3,11 @@ import { Home } from "lucide-react"
 import { ReactNode } from "react"
 import { Link } from "react-router-dom"
 
-export interface IInputes{
+export interface IInputes {
     inputTitle: string
     placeholder: string
     type?: "email" | "password" | undefined
+    ref: React.Ref<HTMLInputElement>
 }
 
 interface IPTemplateLoginRegister {
@@ -24,26 +25,27 @@ export const TemplateLoginRegister = ({ title, inputs, children }: IPTemplateLog
 
             <div className="flex items-center justify-between p-8">
                 <Heading>{title}</Heading>
-                
-                    <Link to="/">
-                        <IconButton variant="ghost">
-                            <Home></Home>
-                        </IconButton>
-                    </Link>
+
+                <Link to="/">
+                    <IconButton variant="ghost">
+                        <Home></Home>
+                    </IconButton>
+                </Link>
             </div>
 
             <div className="my-4 p-6 flex flex-col gap-8">
-                {inputs.map(value => {
-                    return <label>
+                {inputs.map((value, index) => (
+                    <label key={index}>
                         <Text>
                             {value.inputTitle}
                         </Text>
                         <TextField.Root
                             placeholder={`${value.placeholder}`}
-                            type={value.type || "text" }
+                            type={value.type || "text"}
+                            ref={value.ref}
                         />
                     </label>
-                })}
+                ))}
             </div>
 
             <div className="flex justify-between px-6">

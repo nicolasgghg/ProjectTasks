@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { App } from './App.tsx'
 import './index.css'
 import { Theme } from '@radix-ui/themes';
-import { ThemeProvider, ThemeContext } from './shared/context/main.ts';
+import { ThemeProvider, ThemeContext, UserProvider } from './shared/context/main.ts';
 import { useContext } from 'react';
 import { Login } from './pages/login/Login.tsx';
 import { Register } from './pages/register/Register.tsx';
@@ -46,6 +46,8 @@ const Main = () => {
 
 createRoot(document.getElementById('root')!).render(
   <ThemeProvider>
-    <Main />
+    <UserProvider>
+      <Main />
+    </UserProvider>
   </ThemeProvider>
 )
