@@ -3,21 +3,22 @@ import { ReactNode } from "react"
 
 interface IPTask {
     children: ReactNode
-    titleTask: string
-    description?: string
+    titleDialog: string
+    titleTask?: string
+    titleButtonDialog: string
 }
 
-export const DialogTask = ({ children, titleTask, description}: IPTask) => {
+export const DialogTask = ({ children, titleDialog, titleTask, titleButtonDialog }: IPTask) => {
     return <Dialog.Root>
         <Dialog.Trigger>
             {children}
         </Dialog.Trigger>
 
         <Dialog.Content maxWidth="450px">
-            <Dialog.Title>{titleTask}</Dialog.Title>
+            <Dialog.Title>{titleDialog}</Dialog.Title>
 
             <Dialog.Description size="2" mb="4">
-                { description }
+                {titleTask}
             </Dialog.Description>
 
             <Flex direction="column" gap="3">
@@ -46,7 +47,7 @@ export const DialogTask = ({ children, titleTask, description}: IPTask) => {
                     </Button>
                 </Dialog.Close>
                 <Dialog.Close>
-                    <Button>Create</Button>
+                    <Button>{titleButtonDialog}</Button>
                 </Dialog.Close>
             </Flex>
         </Dialog.Content>

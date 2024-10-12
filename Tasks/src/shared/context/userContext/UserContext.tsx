@@ -13,7 +13,12 @@ interface IUserContext {
   logout: () => void;
 }
 
-export const UserContext = createContext<IUserContext | null>(null);
+export const UserContext = createContext<IUserContext>({
+  user: null,
+  isLoggedIn: false,
+  login: ()=> false,
+  logout: () => {}
+});
 
 export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<IUser | null>(null);

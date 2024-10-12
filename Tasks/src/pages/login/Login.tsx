@@ -1,8 +1,9 @@
 import { Button } from "@radix-ui/themes"
 import { useContext, useEffect, useRef } from "react"
-import { IInputes, TemplateLoginRegister } from "../../shared/components/templateLoginRegister/TemplateLoginRegister"
+import { IInputes, TemplateForms } from "../../shared/components/templateForms/TemplateForms"
 import { Link, useNavigate } from "react-router-dom"
 import { UserContext } from "../../shared/context/main"
+import { UserRound } from "lucide-react"
 
 export const Login = () => {
 
@@ -44,8 +45,9 @@ export const Login = () => {
 
 
     return (
-        <TemplateLoginRegister
-            title="LOGIN"
+        <TemplateForms
+            iconTitlePage={UserRound}
+            title="Login"
             inputs={inputs}
         >
             <Link to="/Register">
@@ -54,6 +56,6 @@ export const Login = () => {
                 </Button>
             </Link>
             <Button variant="soft" onClick={handleLogin}>Login</Button>
-        </TemplateLoginRegister >
+        </TemplateForms >
     )
 }

@@ -7,6 +7,7 @@ import { ThemeProvider, ThemeContext, UserProvider } from './shared/context/main
 import { useContext } from 'react';
 import { Login } from './pages/login/Login.tsx';
 import { Register } from './pages/register/Register.tsx';
+import { UserConfigurations } from './pages/userConfigurations/UserConfigurations.tsx';
 
 
 const router = createBrowserRouter([
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
   {
     path: "/Register",
     element: <Register />
+  },
+  {
+    path: "/UserConfigurations",
+    element: <UserConfigurations />
   },
   {
     path: "/*",

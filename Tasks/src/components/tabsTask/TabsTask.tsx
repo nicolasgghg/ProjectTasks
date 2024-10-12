@@ -1,5 +1,5 @@
 import { Separator, Tabs } from "@radix-ui/themes";
-import { Task } from "../task/Task";
+import { Task } from "./components/Task";
 import tasks from "../../assets/tasks.json";
 
 
