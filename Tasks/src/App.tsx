@@ -1,13 +1,18 @@
 import { TabsTask } from "./components/tabsTask/TabsTask";
-import { NavBar } from "./components/navBar/navBar";
-import { useEffect } from "react";
+import { NavBar } from "./components/navBar/NavBar";
+import { useContext, useEffect } from "react";
+import { UserContext } from "./shared/context/main";
 
 
 
 export const App = () => {
   
+  const userContext = useContext(UserContext)
+
+  const { user } = userContext
+
   useEffect(()=>{
-    document.title="Tasks"
+    document.title=`Task ${user ? `- ${user.name}` : ""}`
   })
 
 

@@ -1,10 +1,15 @@
 import { Button } from "@radix-ui/themes"
 import { IInputes, TemplateForms } from "../../shared/components/templateForms/TemplateForms"
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { UserRoundCog } from "lucide-react";
 
 
 export const UserConfigurations = () => {
+
+    useEffect(()=>{
+        document.title = "Tasks - UserConfigurations"
+    },[])
+
 
     const nameRef = useRef<HTMLInputElement>(null);
     const emailRef = useRef<HTMLInputElement>(null);
