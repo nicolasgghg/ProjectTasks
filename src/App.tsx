@@ -1,5 +1,5 @@
 import { TabsTask } from "./components/tabsTask/TabsTask";
-import { NavBar } from "./components/navBar/navBar";
+import { NavBar } from "./components/navBar/NavBar";
 import { useContext, useEffect } from "react";
 import { UserContext } from "./shared/context/main";
 
