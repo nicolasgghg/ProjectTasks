@@ -1,7 +1,8 @@
 import { Box, Button, Card, Heading, Text, Tooltip } from "@radix-ui/themes";
 import { Menu, X } from "lucide-react";
 import { TaskMenu } from "./TaskMenu";
-import { useCallback, useState } from "react";
+import { useCallback, useContext, useState } from "react";
+import { ThemeContext } from "../../../shared/context/main";
 
 export interface IPTask {
     id: number;
@@ -13,14 +14,16 @@ export interface IPTask {
 export const Task = ({ task }: { task: IPTask }) => {
     const [menuOpen, setMenuOpen] = useState(false);
 
+    const { theme } = useContext(ThemeContext)
+
     const handleMenuToggle = useCallback(() => {
         setMenuOpen(prev => !prev);
     }, [])
 
     return (
-        <div className="relative group overflow-hidden">
+        <div className="relative group overflow-hidden rounded-2xl">
             <div className={`absolute inset-0 w-full h-full bg-gradient-to-r from-[#253e8e] to-[#04c6ae] blur-3xl opacity-0 ${menuOpen ? "opacity-100 animate-spin" : "group-hover:opacity-100 group-hover:animate-spin"}`}></div>
-            <Card className="m-4 flex h-[150px] justify-between items-center relative bg-black z-10">
+            <Card className={`m-2 flex h-[150px] justify-between items-center relative z-10 ${theme === "dark" ? "bg-black" : "bg-white"}`}>
                 <Box className="w-3/4 pb-3 text-justify">
                     <Heading className="my-2">{task.title}</Heading>
                     <Box className="overflow-y-auto max-h-[100px] pr-2">
