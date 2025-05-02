@@ -23,11 +23,11 @@ export const Register = () => {
     {
       inputTitle: "Name",
       placeholder: "Your name",
-      ref: nameRef
+      ref: nameRef,
     },
     {
       inputTitle: "Email",
-      placeholder: "seu@exemplo.com",
+      placeholder: "your@example.com",
       type: "email",
       ref: emailRef,
     },
@@ -44,11 +44,11 @@ export const Register = () => {
     const email = emailRef.current?.value || "";
     const password = passwordRef.current?.value || "";
     try {
-      await registerUser(name, email, password);
-      alert("Cadastro realizado! Faça login.");
+      await registerUser({name, email, password});
+      alert("Registration successful! Please log in.");
       navigate("/login");
     } catch (err: any) {
-      alert("Erro ao cadastrar: " + err.message);
+      alert("Failed to register: " + err.message);
     }
   };
 

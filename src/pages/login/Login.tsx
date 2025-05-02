@@ -22,7 +22,7 @@ export const Login = () => {
   const inputs: IInputes[] = [
     {
       inputTitle: "Email",
-      placeholder: "seu@exemplo.com",
+      placeholder: "your@example.com",
       type: "email",
       ref: emailRef,
     },
@@ -39,7 +39,7 @@ export const Login = () => {
     const password = passwordRef.current?.value || "";
     const ok = await login(email, password);
     if (ok) navigate("/");
-    else alert("E-mail ou senha inválidos.");
+    else alert("Invalid email or password.");
   };
 
   return (

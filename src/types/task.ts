@@ -5,3 +5,9 @@ export interface ITask {
   completed: boolean;
   userId: number;
 }
+
+export interface ICreateTask {
+  title: string;
+  description: string;
+  userId: number;
+}

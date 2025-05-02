@@ -1,19 +1,20 @@
 import { Separator, Tabs } from "@radix-ui/themes";
 import { Task } from "./components/Task";
 import { useUser } from "../../context/main";
+import { ITask } from "../../types/task";
 
-export const TabsTask = () => {
+export const TabsTask = ({ tasks }: { tasks: ITask[] }) => {
   const user = useUser().user;
 
-  if (!user || !user.tasks) {
+  if (!user) {
     return (
       <p className="text-center text-red-500 font-semibold mt-4">
-        Você precisa estar logado para visualizar suas tasks.
+        You need to be logged in to view your tasks.
       </p>
     );
-  }
+  };
 
-  const tasks = user.tasks;
+
   const todoTasks = tasks.filter((task) => !task.completed);
   const finishedTasks = tasks.filter((task) => task.completed);
 

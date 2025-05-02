@@ -7,3 +7,9 @@ export interface IUser {
   password: null;
   tasks: ITask[];
 }
+
+export interface ICreateUser{
+  name: string,
+  email: string,
+  password: string
+}

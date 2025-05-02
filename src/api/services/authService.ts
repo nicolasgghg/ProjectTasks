@@ -13,10 +13,9 @@ export async function fetchUserByToken(): Promise<IUser> {
   });
 
   if (!response.ok) {
-    throw new Error("Token inválido ou expirado");
+    throw new Error("Invalid or expired token");
   }
 
   const json = await response.json();
   return json.data.result;
-  
 }

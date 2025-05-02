@@ -1,4 +1,3 @@
-// src/context/userContext/UserContext.tsx
 import React, {
   createContext,
   useContext,
@@ -44,14 +43,14 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
-      if (!resp.ok) throw new Error("Credenciais inválidas");
+      if (!resp.ok) throw new Error("Invalid credentials");
       const json = await resp.json();
-      const  token = json.data.token;
+      const token = json.data.token;
 
       localStorage.setItem("auth-token", token);
       const u = await fetchUserByToken();
       console.log(u);
-      
+
       setUser(u);
       setIsLoggedIn(true);
       return true;
@@ -75,6 +74,6 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
 
 export function useUser() {
   const ctx = useContext(UserContext);
-  if (!ctx) throw new Error("useUser deve ser usado dentro de UserProvider");
+  if (!ctx) throw new Error("useUser must be used within a UserProvider");
   return ctx;
 }
