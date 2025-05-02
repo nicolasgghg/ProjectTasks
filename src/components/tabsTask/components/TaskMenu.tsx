@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ThemeContext } from "../../../shared/context/main";
+import { ThemeContext } from "../../../context/main";
 import { DialogTask } from "../../../shared/components/dialogTask/DialogTask";
 import { Button } from "@radix-ui/themes";
 import { Check, Edit, Trash } from "lucide-react";

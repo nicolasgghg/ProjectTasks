@@ -1,7 +1,7 @@
 import { Button, Card, Flex, Section } from "@radix-ui/themes";
 import { Moon, Sun } from "lucide-react";
 import { Link } from "react-router-dom";
-import { ThemeContext } from "../../shared/context/main.ts";
+import { ThemeContext } from "../../context/main.ts";
 import { useContext } from "react";
 import { DialogTask } from "../../shared/components/dialogTask/DialogTask.tsx";
 import { NavBarUser } from "./components/navBarUser.tsx";

@@ -2,7 +2,7 @@ import { Box, Button, Card, Heading, Text, Tooltip } from "@radix-ui/themes";
 import { Menu, X } from "lucide-react";
 import { TaskMenu } from "./TaskMenu";
 import { useCallback, useContext, useState } from "react";
-import { ThemeContext } from "../../../shared/context/main";
+import { ThemeContext } from "../../../context/main";;
 
 export interface IPTask {
     id: number;
