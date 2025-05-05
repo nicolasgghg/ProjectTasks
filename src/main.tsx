@@ -10,6 +10,7 @@ import "./index.css";
 
 import { ThemeProvider, ThemeContext } from "./context/theme/ThemeContext";
 import { UserProvider } from "./context/userContext/UserContext";
+import { TaskProvider } from "./context/taskContext/TaskContext";
 
 const router = createBrowserRouter([
   { path: "/", element: <App /> },
@@ -39,7 +40,9 @@ const Main = () => {
 createRoot(document.getElementById("root")!).render(
   <ThemeProvider>
     <UserProvider>
-      <Main />
+      <TaskProvider>
+        <Main />
+      </TaskProvider>
     </UserProvider>
   </ThemeProvider>
 );

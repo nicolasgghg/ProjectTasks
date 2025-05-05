@@ -1,19 +1,15 @@
 import { Button, Card, Flex, Section } from "@radix-ui/themes";
 import { Moon, Sun } from "lucide-react";
 import { Link } from "react-router-dom";
-import { ThemeContext, useUser } from "../../context/main.ts";
+import { ThemeContext, useTask, useUser } from "../../context/main.ts";
 import { useContext } from "react";
 import { DialogTask } from "../../shared/components/dialogTask/DialogTask.tsx";
 import { NavBarUser } from "./components/navBarUser.tsx";
-import { ICreateTask } from "../../types/task.ts";
 
-interface NavBarProps {
-  addTask: (task: ICreateTask) => Promise<void>;
-}
-
-export const NavBar = ({ addTask }: NavBarProps) => {
+export const NavBar = () => {
   const { theme, handleToggleTheme } = useContext(ThemeContext);
   const userId = useUser().user?.id;
+  const { addTask } = useTask();
 
   const handleCreateTask = (task: { title: string; description: string }) => {
     if (userId == undefined) {
@@ -122,7 +118,8 @@ export const NavBar = ({ addTask }: NavBarProps) => {
           <DialogTask
             titleDialog="Create Task"
             titleButtonDialog="Save"
-            titleTask="Fill in the task details below"
+            descriptionDialog="Fill in the task details below"
+            idTask={0}
             onSubmit={handleCreateTask}
           >
             <Button variant="solid">New Task</Button>

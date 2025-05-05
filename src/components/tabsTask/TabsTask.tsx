@@ -1,9 +1,9 @@
 import { Separator, Tabs } from "@radix-ui/themes";
 import { Task } from "./components/Task";
-import { useUser } from "../../context/main";
-import { ITask } from "../../types/task";
+import { useTask, useUser } from "../../context/main";
 
-export const TabsTask = ({ tasks }: { tasks: ITask[] }) => {
+export const TabsTask = () => {
+  const { tasks } = useTask();
   const user = useUser().user;
 
   if (!user) {
@@ -12,8 +12,15 @@ export const TabsTask = ({ tasks }: { tasks: ITask[] }) => {
         You need to be logged in to view your tasks.
       </p>
     );
-  };
+  }
 
+  if (!tasks || tasks.length === 0) {
+    return (
+      <p className="text-center text-red-500 font-semibold mt-4">
+        Create a Task.
+      </p>
+    );
+  }
 
   const todoTasks = tasks.filter((task) => !task.completed);
   const finishedTasks = tasks.filter((task) => task.completed);

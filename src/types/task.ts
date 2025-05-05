@@ -11,3 +11,11 @@ export interface ICreateTask {
   description: string;
   userId: number;
 }
+
+export interface IUpdateTask {
+  id: number;
+  title?: string;
+  description?: string;
+  userId?: number;
+  completed?: boolean;
+}

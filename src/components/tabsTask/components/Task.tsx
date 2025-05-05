@@ -2,16 +2,11 @@ import { Box, Button, Card, Heading, Text, Tooltip } from "@radix-ui/themes";
 import { Menu, X } from "lucide-react";
 import { TaskMenu } from "./TaskMenu";
 import { useCallback, useContext, useState } from "react";
-import { ThemeContext } from "../../../context/main";;
+import { ThemeContext } from "../../../context/main";import { ITask } from "../../../types/task";
+;
 
-export interface IPTask {
-    id: number;
-    title: string;
-    description: string;
-    completed: boolean;
-}
 
-export const Task = ({ task }: { task: IPTask }) => {
+export const Task = ({ task }: { task: ITask }) => {
     const [menuOpen, setMenuOpen] = useState(false);
 
     const { theme } = useContext(ThemeContext)
