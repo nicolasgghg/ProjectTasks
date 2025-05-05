@@ -46,7 +46,9 @@ export function TaskProvider({ children }: { children: React.ReactNode }) {
 
   const addTask = useCallback(async (payload: ICreateTask) => {
     try {
-      if ((tasks?.length ?? 0) >= 10) {
+
+      const data = await getTasks()
+      if ((data.length) >= 10) {
         return alert("You have limits task in 10");
       }
 

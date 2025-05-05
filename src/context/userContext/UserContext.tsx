@@ -6,14 +6,16 @@ import React, {
   useCallback,
 } from "react";
 import { fetchUserByToken } from "../../api/services/authService";
-import { IUser } from "../../types/user";
+import { IUpdateUser, IUser } from "../../types/user";
 import { API_URL } from "../../api/config";
+import { updateUserService } from "../../api/services/userService";
 
 interface UserContextType {
   user: IUser | null;
   isLoggedIn: boolean;
   login: (email: string, password: string) => Promise<boolean>;
   logout: () => void;
+  updateUser: (payload: IUpdateUser) => Promise<void>;
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
@@ -65,8 +67,20 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
     setIsLoggedIn(false);
   }, []);
 
+  const updateUser = useCallback(async (payload: IUpdateUser) => {
+    try {
+      const response = await updateUserService(payload);
+      setUser(response);
+    } catch (err: any) {
+      console.log(err.message);
+      throw err;
+    }
+  }, []);
+
   return (
-    <UserContext.Provider value={{ user, isLoggedIn, login, logout }}>
+    <UserContext.Provider
+      value={{ user, isLoggedIn, login, logout, updateUser }}
+    >
       {children}
     </UserContext.Provider>
   );
