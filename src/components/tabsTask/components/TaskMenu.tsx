@@ -11,18 +11,30 @@ interface IPTaskMenu {
 }
 
 export const TaskMenu = ({ menuOpen, task }: IPTaskMenu) => {
-  const { updateTask } = useTask();
+  const { updateTask, deleteTask } = useTask();
 
   const handleUpdateTask = useCallback(
     (payload: { title?: string; description?: string; id: number }) => {
       if (payload.id == undefined) {
         return alert("Contact Support");
-      }else{
-          updateTask(payload);
+      } else {
+        updateTask(payload);
       }
     },
     []
   );
+
+  const handleCompletedTask = useCallback(() => {
+    const id = task.id;
+    if (!task.completed) {
+      const completed = (task.completed = true);
+      updateTask({ completed, id });
+    } 
+  }, []);
+
+  const handleDeleteTask = useCallback(() => {
+    deleteTask(task.id);
+  }, []);
 
   const themeContext = useContext(ThemeContext);
 
@@ -49,7 +61,11 @@ export const TaskMenu = ({ menuOpen, task }: IPTaskMenu) => {
             </Button>
           </DialogTask>
           {!task.completed && (
-            <Button className="w-16 mx-1/4" variant="ghost" onClick={() => {}}>
+            <Button
+              className="w-16 mx-1/4"
+              variant="ghost"
+              onClick={handleCompletedTask}
+            >
               <Check className="mr-2" />
             </Button>
           )}
@@ -57,7 +73,7 @@ export const TaskMenu = ({ menuOpen, task }: IPTaskMenu) => {
             className="w-16 mx-1/4"
             variant="ghost"
             color="red"
-            onClick={() => {}}
+            onClick={handleDeleteTask}
           >
             <Trash className="mr-2" />
           </Button>

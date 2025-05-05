@@ -7,18 +7,27 @@ import React, {
 } from "react";
 
 import { ICreateTask, ITask, IUpdateTask } from "../../types/task";
-import { createTask, getTasks, updateTaskService } from "../../api/services/taskService";
+import {
+  createTask,
+  deleteTaskService,
+  getTasks,
+  updateTaskService,
+} from "../../api/services/taskService";
+import { useUser } from "../userContext/UserContext";
 
 interface TaskContextType {
   tasks: ITask[] | null;
   error: any;
   addTask: (payload: ICreateTask) => Promise<void>;
   updateTask: (payload: IUpdateTask) => Promise<void>;
+  deleteTask: (id: number) => Promise<void>;
 }
 
 const TaskContext = createContext<TaskContextType | undefined>(undefined);
 
 export function TaskProvider({ children }: { children: React.ReactNode }) {
+  const { user } = useUser();
+
   const [tasks, setTasks] = useState<ITask[] | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -29,7 +38,7 @@ export function TaskProvider({ children }: { children: React.ReactNode }) {
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     loadingTasks();
@@ -44,7 +53,6 @@ export function TaskProvider({ children }: { children: React.ReactNode }) {
       const newTask = await createTask(payload);
       setTasks((prev) => [...(prev ?? []), newTask]);
       loadingTasks();
-
     } catch (err: any) {
       setError(err.message);
       throw err;
@@ -61,8 +69,20 @@ export function TaskProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
+  const deleteTask = useCallback(async (id: number) => {
+    try {
+      await deleteTaskService(id);
+      loadingTasks();
+    } catch (err: any) {
+      setError(err.message);
+      throw err;
+    }
+  }, []);
+
   return (
-    <TaskContext.Provider value={{ tasks, addTask, error, updateTask }}>
+    <TaskContext.Provider
+      value={{ tasks, addTask, error, updateTask, deleteTask }}
+    >
       {children}
     </TaskContext.Provider>
   );

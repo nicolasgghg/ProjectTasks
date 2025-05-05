@@ -42,7 +42,9 @@ export async function getTasks(): Promise<ITask[]> {
   return json.data;
 }
 
-export async function updateTaskService(Payload : IUpdateTask): Promise<ITask[]> {
+export async function updateTaskService(
+  Payload: IUpdateTask
+): Promise<ITask[]> {
   const token = getAuthToken();
 
   const response = await fetch(`${API_URL}/api/task/${Payload.id}`, {
@@ -51,7 +53,7 @@ export async function updateTaskService(Payload : IUpdateTask): Promise<ITask[]>
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(Payload)
+    body: JSON.stringify(Payload),
   });
 
   if (!response.ok) {
@@ -61,4 +63,22 @@ export async function updateTaskService(Payload : IUpdateTask): Promise<ITask[]>
 
   const json = await response.json();
   return json.data;
+}
+
+export async function deleteTaskService(id: number): Promise<void> {
+  const token = getAuthToken();
+
+  const response = await fetch(`${API_URL}/api/task/${id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.message || "Error in delete task");
+  }
+  return 
 }
